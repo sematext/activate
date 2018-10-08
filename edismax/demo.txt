@@ -28,3 +28,6 @@ http://localhost:8983/solr/edismax/select?defType=edismax&q=solr video logs&qf=t
 
 # and even more control
 http://localhost:8983/solr/edismax/select?defType=edismax&q=solr video logs&qf=title^10000 tags&mm=50%25
+
+# and phrases (bi-grams and tri-grams)
+http://localhost:8983/solr/edismax/select?defType=edismax&q=solr video logs&qf=title^10000 tags&pf2=title&pf3=title&debugQuery=on&indent=true

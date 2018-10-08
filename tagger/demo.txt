@@ -1,0 +1,61 @@
+#####
+## Solr Text Tagger Demo
+#####
+
+# start Solr
+bin/solr start -c -f
+
+# create tagger collection
+bin/solr create_collection -c tagger
+
+# add additional field for tagging
+curl -XPOST -H 'Content-type:application/json'  'http://localhost:8983/solr/tagger/schema' -d '{
+  "add-field-type":{
+    "name":"tagging",
+    "class":"solr.TextField",
+    "postingsFormat":"FST50",
+    "omitNorms":true,
+    "omitTermFreqAndPositions":true,
+    "indexAnalyzer":{
+      "tokenizer":{ "class":"solr.StandardTokenizerFactory" },
+      "filters":[
+        {"class":"solr.LowerCaseFilterFactory"},
+        {"class":"solr.ConcatenateGraphFilterFactory", "preservePositionIncrements":false }
+      ]},
+    "queryAnalyzer":{
+      "tokenizer":{
+         "class":"solr.StandardTokenizerFactory" },
+      "filters":[
+        {"class":"solr.LowerCaseFilterFactory"}
+      ]}
+    },
+  "add-field":{"name":"title", "type":"text_general"},
+  "add-field":{"name":"title_tag", "type":"tagging", "stored":false},
+  "add-copy-field":{"source":"title", "dest":["title_tag"]}
+}'
+
+# add tagging data
+curl -XPOST -H 'Content-type:application/json'  'http://localhost:8983/solr/tagger/update' -d '[
+ {"title":"Solr"},
+ {"title":"Elasticsearch"},
+ {"title":"Docker"},
+ {"title":"Sematext"}
+]'
+
+# create tagging handler
+curl -XPOST -H 'Content-type:application/json' 'http://localhost:8983/solr/tagger/config' -d '{
+ "add-requesthandler" : {
+  "name": "/tagger",
+  "class": "solr.TaggerRequestHandler",
+  "defaults": {
+   "field":"title_tag"
+  }
+ }
+}'
+
+# try tagging the documents - warning plain/text alert
+curl -XPOST 'http://localhost:8983/solr/tagger/tagger?fl=id,title&wt=json&indent=on' -H 'Content-Type:text/plain' -d "`cat data/10.json | jq -r .title`"
+
+curl -XPOST 'http://localhost:8983/solr/tagger/tagger?fl=id,title&wt=json&indent=on' -H 'Content-Type:text/plain' -d "`cat data/20.json | jq -r .title`"
+
+curl -XPOST 'http://localhost:8983/solr/tagger/tagger?fl=id,title&wt=json&indent=on' -H 'Content-Type:text/plain' -d "`cat data/37.json | jq -r .title`"

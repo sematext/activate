@@ -1,0 +1,30 @@
+#####
+## Edismax demo
+#####
+
+# start Solr
+bin/solr start -c -f
+
+# create edismax collection
+bin/solr create_collection -c edismax
+
+# index example data
+./index.sh edismax
+
+# run simple query
+http://localhost:8983/solr/edismax/select?q=solr video logs
+
+# run simple query with default search field
+http://localhost:8983/solr/edismax/select?q=solr video logs&df=title
+
+# how to improve that
+http://localhost:8983/solr/edismax/select?q=(title:solr title:video title:logs) AND (tags:solr tags:video tags:logs)
+
+# here comes dismax and edismax
+http://localhost:8983/solr/edismax/select?defType=edismax&q=solr video logs&qf=title tags
+
+# here comes boosting
+http://localhost:8983/solr/edismax/select?defType=edismax&q=solr video logs&qf=title^10000 tags
+
+# and even more control
+http://localhost:8983/solr/edismax/select?defType=edismax&q=solr video logs&qf=title^10000 tags&mm=50%25

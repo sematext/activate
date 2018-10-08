@@ -1,2 +1,2 @@
 # activate
-Examples for the Activate confernce
+Examples for demos used for talks for the Activate conference

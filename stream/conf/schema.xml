@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="SematextActivate2018" version="1.6">
+    <!-- special fields -->
+    <field name="_version_" type="plong" indexed="true" stored="true"/>
+    <field name="_root_" type="string" indexed="true" stored="false"/>
+
+    <!-- document identifier -->
+    <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" docValues="true" />
+
+    <!-- rest of the fields -->
+    <field name="url" type="string" indexed="true" stored="true" multiValued="false"/>
+    <field name="title" type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="uploaded_by" type="string" indexed="true" stored="true" multiValued="false" termVectors="true" docValues="true"/>
+    <field name="upload_date" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <field name="views" type="pint" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <field name="likes" type="pint" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <field name="tags" type="string" indexed="true" stored="true" multiValued="true" termVectors="true" docValues="true"/>
+    <field name="geo_location" type="location" indexed="true" stored="true" multiValued="false" />
+
+    <uniqueKey>id</uniqueKey>
+
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" docValues="true" />
+    <fieldType name="strings" class="solr.StrField" sortMissingLast="true" multiValued="true" docValues="true" />
+    <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+    <fieldType name="booleans" class="solr.BoolField" sortMissingLast="true" multiValued="true"/>
+    <fieldType name="pint" class="solr.IntPointField" docValues="true"/>
+    <fieldType name="pfloat" class="solr.FloatPointField" docValues="true"/>
+    <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
+    <fieldType name="pdouble" class="solr.DoublePointField" docValues="true"/>
+    <fieldType name="pints" class="solr.IntPointField" docValues="true" multiValued="true"/>
+    <fieldType name="pfloats" class="solr.FloatPointField" docValues="true" multiValued="true"/>
+    <fieldType name="plongs" class="solr.LongPointField" docValues="true" multiValued="true"/>
+    <fieldType name="pdoubles" class="solr.DoublePointField" docValues="true" multiValued="true"/>
+    <fieldType name="pdate" class="solr.DatePointField" docValues="true"/>
+    <fieldType name="pdates" class="solr.DatePointField" docValues="true" multiValued="true"/>
+    <fieldType name="binary" class="solr.BinaryField"/>
+    <fieldType name="random" class="solr.RandomSortField" indexed="true" />
+    <fieldType name="ignored" stored="false" indexed="false" multiValued="true" class="solr.StrField" />
+    <fieldType name="point" class="solr.PointType" dimension="2" subFieldSuffix="_d"/>
+    <fieldType name="location" class="solr.LatLonPointSpatialField" docValues="true"/>
+    <fieldType name="location_rpt" class="solr.SpatialRecursivePrefixTreeFieldType"
+               geo="true" distErrPct="0.025" maxDistErr="0.001" distanceUnits="kilometers" />
+    <fieldType name="bbox" class="solr.BBoxField"
+               geo="true" distanceUnits="kilometers" numberType="_bbox_coord" />
+    <fieldType name="_bbox_coord" class="solr.TrieDoubleField" precisionStep="8" docValues="true" stored="false"/>
+
+    <dynamicField name="*_d"  type="pdouble" indexed="true" stored="true"/>
+    <dynamicField name="*_coordinate"  type="pdouble" indexed="true" stored="false" />
+</schema>

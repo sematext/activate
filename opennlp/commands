@@ -1,0 +1,31 @@
+# predefined models. Might be useful
+echo "introduction to solr 2018" | bin/opennlp TokenNameFinder en-ner-date.bin
+
+# but this won't help, we need our own model
+echo "solr elasticsearch youtube" | bin/opennlp TokenNameFinder en-ner-organization.bin
+
+# we can tune algorithms
+cat params.txt
+# samples at https://github.com/apache/opennlp/tree/master/opennlp-tools/lang/ml
+
+# and how features get generated
+cat features.xml
+# all feature generators: https://github.com/apache/opennlp/tree/master/opennlp-tools/src/main/java/opennlp/tools/util/featuregen
+
+# for tuning we need labeled data
+head data
+
+# now let's trane a model
+bin/opennlp TokenNameFinderTrainer -model urls.bin -lang ml -params params.txt -featuregen features.xml -data queries -encoding UTF8
+
+# this should work
+echo "solr elasticsearch youtube" | bin/opennlp TokenNameFinder urls.bin
+
+# also works, we give it even more context
+echo "solr elasticsearch on youtube" | bin/opennlp TokenNameFinder urls.bin
+
+# no false positive here
+echo "solr elasticsearch performance" | bin/opennlp TokenNameFinder urls.bin
+
+# this one is too similar, though
+echo "solr elasticsearch on performance" | bin/opennlp TokenNameFinder urls.bin

@@ -1,0 +1,80 @@
+#####
+## Streaming expressions + LTR
+#####
+
+# start Solr
+bin/solr start -c -f
+
+# upload configuration to embedded ZK
+bin/solr zk upconfig -z localhost:9983 -n ltr -d PATH_TO_CONFIG
+
+# create ltr collection
+bin/solr create_collection -c ltr -n ltr
+
+# index data
+./index.sh ltr
+
+# get significant terms
+curl --data-urlencode 'expr=select(
+  sort(
+    significantTerms(ltr, q="*:*", field="tags", limit="100", minDocFreq="5", maxDocFreq=".5", minTermLength="3"),
+    by="score asc"
+  ),
+  mult(100,div(10, score)) as score,
+  term as term
+)' http://localhost:8983/solr/ltr/stream
+
+# put data into the feature store
+curl -XPUT 'localhost:8983/solr/ltr/schema/feature-store' -H 'Content-type:application/json' --data-binary '[
+  {
+    "name" : "elasticsearch_tag",
+    "class" : "org.apache.solr.ltr.feature.SolrFeature",
+    "params" : {
+      "fq" : [  "{!terms f=tags}elasticsearch" ]
+    }
+  },
+  {
+    "name" : "solr_tag",
+    "class" : "org.apache.solr.ltr.feature.SolrFeature",
+    "params" : {
+      "fq" : [  "{!terms f=tags}solr" ]
+    }
+  },
+  {
+    "name" : "logging_tag",
+    "class" : "org.apache.solr.ltr.feature.SolrFeature",
+    "params" : {
+      "fq" : [  "{!terms f=tags}logging" ]
+    }
+  },
+  {
+    "name" : "score",
+    "class" : "org.apache.solr.ltr.feature.OriginalScoreFeature",
+    "params" : {}
+  }
+]'
+
+# define the model
+curl -XPUT 'localhost:8983/solr/ltr/schema/model-store' -H 'Content-type:application/json' --data-binary '{
+  "class" : "org.apache.solr.ltr.model.LinearModel",
+  "name" : "tagsTrainingModel",
+  "features" : [
+    { "name" : "elasticsearch_name" },
+    { "name" : "solr_name" },
+    { "name" : "logging_name" },
+    { "name" : "score" }
+  ],
+  "params" : {
+    "weights" : {
+      "elasticsearch_name" : 146.0,
+      "solr_name" : 146.0,
+      "logging_name" : 142.0,
+      "score" : 1.0
+    }
+  }
+}'
+
+# now compare two queries
+http://localhost:8983/solr/ltr/select?q=*:*&indent=true&fl=id,title,tags,score
+
+http://localhost:8983/solr/ltr/select?q=*:*&indent=true&fl=id,title,tags,score&rq={!ltr model=tagsTrainingModel reRankDocs=10}

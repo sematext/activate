@@ -9,3 +9,6 @@ Contains demo commands for the extended dismax handler demo
 
 ### tagger - Solr Text Tagger
 Contains demo commands for the Solr text tagger demo
+
+### stream - Streaming expressions + Learning to Rank
+Contains demo command for the Solr streaming expressions and learning to rank

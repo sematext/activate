@@ -1,0 +1,15 @@
+#####
+## SpaCy
+#####
+
+# install
+pip3 install spacy
+
+# download the default model (> 37MB)
+python3 -m spacy download en_core_web_sm
+
+# test using default model
+python3 def.py
+
+# test using new, trained model (show few times to demo different results because of low amount of training data)
+python3 train.py

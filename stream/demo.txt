@@ -59,16 +59,16 @@ curl -XPUT 'localhost:8983/solr/ltr/schema/model-store' -H 'Content-type:applica
   "class" : "org.apache.solr.ltr.model.LinearModel",
   "name" : "tagsTrainingModel",
   "features" : [
-    { "name" : "elasticsearch_name" },
-    { "name" : "solr_name" },
-    { "name" : "logging_name" },
+    { "name" : "elasticsearch_tag" },
+    { "name" : "solr_tag" },
+    { "name" : "logging_tag" },
     { "name" : "score" }
   ],
   "params" : {
     "weights" : {
-      "elasticsearch_name" : 146.0,
-      "solr_name" : 146.0,
-      "logging_name" : 142.0,
+      "elasticsearch_tag" : 146.0,
+      "solr_tag" : 146.0,
+      "logging_tag" : 142.0,
       "score" : 1.0
     }
   }

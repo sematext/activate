@@ -6,7 +6,7 @@
 bin/solr start -c -f
 
 # upload configuration to embedded ZK
-bin/solr zk upconfig -z localhost:9983 -n ltr -d PATH_TO_CONFIG
+bin/solr zk upconfig -z localhost:9983 -n ltr -d /home/parallels/activate/stream/conf/
 
 # create ltr collection
 bin/solr create_collection -c ltr -n ltr

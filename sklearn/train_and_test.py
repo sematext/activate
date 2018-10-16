@@ -37,7 +37,7 @@ y = []
 for i in range(len(mfr_feature_dict)):
     y.append("mfr")
 for i in range(len(model_feature_dict)):
-    y.append("cat")
+    y.append("model")
 
 print("Initializing and training the model...")
 clf = svm.SVC(kernel='linear', C = 1.0)

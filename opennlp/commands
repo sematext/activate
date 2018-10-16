@@ -20,12 +20,3 @@ bin/opennlp TokenNameFinderTrainer -model urls.bin -lang ml -params params.txt -
 
 # this should work
 echo "solr elasticsearch youtube" | bin/opennlp TokenNameFinder urls.bin
-
-# also works, we give it even more context
-echo "solr elasticsearch on youtube" | bin/opennlp TokenNameFinder urls.bin
-
-# no false positive here
-echo "solr elasticsearch performance" | bin/opennlp TokenNameFinder urls.bin
-
-# this one is too similar, though
-echo "solr elasticsearch on performance" | bin/opennlp TokenNameFinder urls.bin

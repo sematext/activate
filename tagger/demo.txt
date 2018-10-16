@@ -2,9 +2,6 @@
 ## Solr Text Tagger Demo
 #####
 
-# start Solr
-bin/solr start -c -f
-
 # create tagger collection
 bin/solr create_collection -c tagger
 

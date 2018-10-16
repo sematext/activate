@@ -2,9 +2,6 @@
 ## Streaming expressions + LTR
 #####
 
-# start Solr
-bin/solr start -c -f
-
 # upload configuration to embedded ZK
 bin/solr zk upconfig -z localhost:9983 -n ltr -d /home/parallels/activate/stream/conf/
 

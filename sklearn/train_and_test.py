@@ -20,8 +20,8 @@ def read_into_feature_dict(file):
         return le_dict
 
 print("Reading training data...")
-mfr_feature_dict = read_into_feature_dict("/Users/radu/gits/activate/sklearn/mfrs")
-model_feature_dict = read_into_feature_dict("/Users/radu/gits/activate/sklearn/models")
+mfr_feature_dict = read_into_feature_dict("mfrs")
+model_feature_dict = read_into_feature_dict("models")
 
 # training data is an array of arrays. Each inner array is the set of features
 training = []
@@ -53,7 +53,7 @@ def test_from_file(test_file):
     print(clf.predict(test_X))
 
 print("\nTrying to label some manufacturers\n===============")
-test_from_file("/Users/radu/gits/activate/sklearn/test_mfrs")
+test_from_file("test_mfrs")
 
 print("\nTrying to label some models\n===============")
-test_from_file("/Users/radu/gits/activate/sklearn/test_models")
+test_from_file("test_models")

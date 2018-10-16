@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn import svm
 
-# TODO: pre-processing, shingles, the log. Your problem, Miss Application!
+# TODO: pre-processing, shingles, the lot. Your problem, Miss Application!
 
 def read_into_feature_dict(file):
     with open(file) as le_file:

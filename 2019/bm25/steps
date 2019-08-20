@@ -1,0 +1,25 @@
+# slides to explain how BM25 works in general :)
+
+# search for "wool AND durable" in the descriptions field
+
+http://localhost:8983/solr/shoes/select?fl=descriptions,score&q=descriptions:wool%20AND%20descriptions:durable&rows=100
+
+# note how spread of score is large (e.g. from 5 to 2.5) which is because we penalize quite heavily by length. This is OK for other fields (e.g. product name - to avoid the "accessories" problem), but not necessarily here. First product isn't twice about wool or durable than the last
+
+# we need to be less aggressive about the length (b) and also about frequency (k1)
+
+# show how managed-schema looks like, with text_descriptions. And how we can define a similarity per-field
+
+# try with b=0.4 (from 0.75, can be [0..1]) and k1=1 (from 1.2, can be any >=0)
+
+/opt/solr-8.2.0/bin/solr zk upconfig -n shoes -d conf/ -z localhost:9983; curl 'localhost:8983/solr/admin/collections?action=RELOAD&name=shoes'
+
+# rerun the query
+
+# => now the spread is a bit smaller (5.2-3.0), but the "spammy one" went first, so maybe we care too much about frequency still
+
+# try with k1=0.7
+
+# => a 5.6 to 3.6 spread, looks about right. But of course we can't rely only on the description. This goes to say how description in itself is not very relevant for product search. E.g. if "wool" is there only once, it may be enough to say that a product is made of wool, but a different description says "to wear with a long wool skirt". Semantic analysis (or even better, structured product data) is more valuable
+
+# P.S. we can turn off freq&length completely by setting k1=0. Then everything will have the same score. Maybe valuable for OR conditions (e.g. only durable? lower score. But we also take IDF into account, so not all terms are equal)

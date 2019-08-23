@@ -1,0 +1,15 @@
+# search for comfortable shoes
+
+http://localhost:8983/solr/shoes/select?q=categories:shoes%20AND%20reviews:comfortable&rows%20=1000&fl=id,categories,name,reviews,score&debugQuery=true
+
+# note how jacket is somewhat on top
+
+# compare debug output with "Beston FB00 Women's Comfort Footbed Sandals". Shoes have next to no influence on score, because they're everywhere
+
+# switch to DFI Standardized
+
+/opt/solr-8.2.0/bin/solr zk upconfig -n shoes -d conf/ -z localhost:9983; curl 'localhost:8983/solr/admin/collections?action=RELOAD&name=shoes'
+
+# rerun query. Better. Not perfect, though: warmup shorts. But if we look at jacket and sandals, we can see the difference in the weight of "shoes". Isn't penalized as it would be in the original paper (Lucene doesn't allow negative scores), but it's 0 in the jacket and some significant chunk in the sandals. Good
+
+# switch to Chi-Squared. Much too aggressive => shorts are too high :D

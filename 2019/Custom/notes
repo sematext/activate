@@ -1,0 +1,19 @@
+For the examples to run you need the additional library to be built. The code is available at: https://github.com/sematext/activate/tree/master/2019/Custom
+
+$ bin/solr -c -f 
+
+$ bin/solr zk upconfig -z localhost:9983 -d /Users/gro/praca/conferences/activate/2019/Custom/conf/ -n custom
+
+$ bin/solr create_collection -n custom -c shoes
+
+http://localhost:8983/solr/shoes/select?q=categories:shoes%20AND%20reviews:comfortable&rows%20=1000&fl=id,categories,name,reviews,score&debugQuery=true
+
+// reload
+
+// let's check very simple example with only one term matching in a field
+
+http://localhost:8983/solr/shoes/select?q=categories:shoes&rows=10&fl=id,categories,name,score&debugQuery=true
+
+// let's see how the similarity behaves on multiple terms 
+
+http://localhost:8983/solr/shoes/select?q=descriptions:shoes&rows=10&fl=id,categories,name,descriptions,score&debugQuery=true

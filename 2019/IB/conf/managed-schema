@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<schema name="activate-2019-ib" version="1.6">
+    <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" />
+
+    <field name="manufacturerNumber" type="text_general" indexed="true" stored="true" required="false" multiValued="false" />
+    <field name="name" type="text_general" indexed="true" stored="true" required="false" multiValued="false" />
+    <field name="reviews" type="text_catrev" indexed="true" stored="true" required="false" multiValued="false" />
+    <field name="categories" type="text_catrev" indexed="true" stored="true" required="false" multiValued="false" />
+    <field name="prices.flavor" type="text_general" indexed="true" stored="true" required="false" multiValued="false" />
+    <field name="Model_Number" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="Shoe_Size" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="Product_ID" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="Place_of_Origin" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="Case_Diameter" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="Band_Width" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="Clothing_Size" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="Size" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="skus" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="EAN" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="Year_Made" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="Case_Thickness" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="Band_Length" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="Waist_Size" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+    <field name="ean" type="pfloat" indexed="true" stored="false" required="false" multiValued="false" />
+    <field name="Band_Length__in._" type="pfloat" indexed="true" stored="false" required="false" multiValued="false" />
+    <field name="upc" type="pfloat" indexed="true" stored="false" required="false" multiValued="false" />
+
+    <field name="_version_" type="plong" indexed="false" stored="false"/>
+    <field name="_root_" type="string" indexed="true" stored="false" docValues="false" />
+    <field name="_nest_path_" type="_nest_path_" /><fieldType name="_nest_path_" class="solr.NestPathField" />
+    <field name="_text_" type="text_general" indexed="true" stored="false" multiValued="true"/>
+    <dynamicField name="*_i"  type="pint"    indexed="true"  stored="true"/>
+    <dynamicField name="*_is" type="pints"    indexed="true"  stored="true"/>
+    <dynamicField name="*_s"  type="string"  indexed="true"  stored="true" />
+    <dynamicField name="*_ss" type="strings"  indexed="true"  stored="true"/>
+    <dynamicField name="*_l"  type="plong"   indexed="true"  stored="true"/>
+    <dynamicField name="*_ls" type="plongs"   indexed="true"  stored="true"/>
+    <dynamicField name="*_t" type="text_general" indexed="true" stored="true" multiValued="false"/>
+    <dynamicField name="*_txt" type="text_general" indexed="true" stored="true"/>
+    <dynamicField name="*_b"  type="boolean" indexed="true" stored="true"/>
+    <dynamicField name="*_bs" type="booleans" indexed="true" stored="true"/>
+    <dynamicField name="*_f"  type="pfloat"  indexed="true"  stored="true"/>
+    <dynamicField name="*_fs" type="pfloats"  indexed="true"  stored="true"/>
+    <dynamicField name="*_d"  type="pdouble" indexed="true"  stored="true"/>
+    <dynamicField name="*_ds" type="pdoubles" indexed="true"  stored="true"/>
+    <dynamicField name="random_*" type="random"/>
+    <dynamicField name="ignored_*" type="ignored"/>
+
+    <uniqueKey>id</uniqueKey>
+
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" docValues="true" />
+    <fieldType name="strings" class="solr.StrField" sortMissingLast="true" multiValued="true" docValues="true" />
+    <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+    <fieldType name="booleans" class="solr.BoolField" sortMissingLast="true" multiValued="true"/>
+    <fieldType name="pint" class="solr.IntPointField" docValues="true"/>
+    <fieldType name="pfloat" class="solr.FloatPointField" docValues="true"/>
+    <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
+    <fieldType name="pdouble" class="solr.DoublePointField" docValues="true"/>
+    <fieldType name="pints" class="solr.IntPointField" docValues="true" multiValued="true"/>
+    <fieldType name="pfloats" class="solr.FloatPointField" docValues="true" multiValued="true"/>
+    <fieldType name="plongs" class="solr.LongPointField" docValues="true" multiValued="true"/>
+    <fieldType name="pdoubles" class="solr.DoublePointField" docValues="true" multiValued="true"/>
+    <fieldType name="random" class="solr.RandomSortField" indexed="true"/>
+    <fieldType name="ignored" stored="false" indexed="false" multiValued="true" class="solr.StrField" />
+
+    <fieldType name="pdate" class="solr.DatePointField" docValues="true"/>
+    <fieldType name="pdates" class="solr.DatePointField" docValues="true" multiValued="true"/>
+    <fieldType name="binary" class="solr.BinaryField"/>
+
+    <dynamicField name="*_ws" type="text_ws"  indexed="true"  stored="true"/>
+    <fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100">
+      <analyzer>
+        <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100" multiValued="true">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <fieldType name="text_catrev" class="solr.TextField" positionIncrementGap="100" multiValued="true">
+      <similarity class="solr.IBSimilarityFactory">
+        <str name="distribution">SPL</str>
+        <str name="lambda">DF</str>
+        <str name="normalization">none</str>
+      </similarity>
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <dynamicField name="*_t_sort" type="text_gen_sort" indexed="true" stored="true" multiValued="false"/>
+    <dynamicField name="*_txt_sort" type="text_gen_sort" indexed="true" stored="true"/>
+    <fieldType name="text_gen_sort" class="solr.SortableTextField" positionIncrementGap="100" multiValued="true">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <dynamicField name="*_txt_en" type="text_en"  indexed="true"  stored="true"/>
+    <fieldType name="text_en" class="solr.TextField" positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.EnglishPossessiveFilterFactory"/>
+        <filter class="solr.PorterStemFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.EnglishPossessiveFilterFactory"/>
+        <filter class="solr.PorterStemFilterFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <dynamicField name="*_txt_en_split" type="text_en_splitting"  indexed="true"  stored="true"/>
+    <fieldType name="text_en_splitting" class="solr.TextField" positionIncrementGap="100" autoGeneratePhraseQueries="true">
+      <analyzer type="index">
+        <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+        <filter class="solr.WordDelimiterGraphFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="1" catenateNumbers="1" catenateAll="0" splitOnCaseChange="1"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.PorterStemFilterFactory"/>
+        <filter class="solr.FlattenGraphFilterFactory" />
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+        <filter class="solr.WordDelimiterGraphFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="0" catenateNumbers="0" catenateAll="0" splitOnCaseChange="1"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.PorterStemFilterFactory"/>
+      </analyzer>
+    </fieldType>
+</schema>

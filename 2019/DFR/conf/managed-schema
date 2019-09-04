@@ -104,9 +104,9 @@
     <fieldType name="text_catrev" class="solr.TextField" positionIncrementGap="100" multiValued="true">
       <similarity class="solr.DFRSimilarityFactory">
         <str name="basicModel">G</str>
-        <str name="afterEffect">B</str>
-        <str name="normalization">H3</str>
-        <float name="mu">900</float>
+        <str name="afterEffect">L</str>
+        <str name="normalization">H2</str>
+        <float name="c">7</float>
       </similarity>
       <analyzer type="index">
         <tokenizer class="solr.StandardTokenizerFactory"/>

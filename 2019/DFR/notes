@@ -1,0 +1,16 @@
+Let's assume that the scenario is as follows - we would like to get the most on topic, longest documents on top. Basically we care about the category and review. The category is quite simple - we have a few terms. For review - the more the user enters there the better, so we care term frequency.
+
+# search for 'comfortable women shoes' and DFR with model G, after effect L and normalization H2 - results are good, but let's try improving that 
+
+http://localhost:8983/solr/shoes/select?q=categories:shoes AND categories:women AND reviews:comfortable&fl=id,categories,name,reviews,score&rows=100
+
+# search for 'comfortable women shoes' and DFR with model G, after effect B and normalization H2  - this turns out different. We have a few short documents on top, so this is not something that we would like. This is because of the B after effect - it uses total term frequency and document frequency, but we want a different behavior. 
+
+# search for 'comfortable women shoes' and DFR with model I(n), after effect L and normalization H2  - this is again more similar to what we've seen initially. Maybe we can improve even more?
+
+# search for 'comfortable women shoes' and DFR with model I(n), after effect L and normalization none  - the models are no so different after all, what if we would remove normalization of the score. This is completely different game now - without normalizing the score we have very high impact of the term frequency and number of terms in the document.
+
+# search for 'comfortable women shoes' and DFR with model G, after effect L and normalization H2, with c set to 100 - similar approach to what we had in the previous example, but with score normalization so the documents are a bit better when it comes to being on point, but the short ones are on top.
+
+
+# search for 'comfortable women shoes' and DFR with model G, after effect L and normalization H2, with c set to 200 - even higher change, the longest documents are on top.	

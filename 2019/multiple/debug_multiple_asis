@@ -1,0 +1,32 @@
+      "bb8e335d-79f5-446f-8c85-ba61548ea7d3":"
+4.945686 = sum of:
+  1.5905907 = weight(descriptions:durable in 6877) [SchemaSimilarity], result of:
+    1.5905907 = score(freq=1.0), product of:
+      2.6696 = idf, computed as log(1 + (N - n + 0.5) / (n + 0.5)) from:
+        2655 = n, number of documents containing term
+        38329 = N, total number of documents with field
+      0.59581614 = tf, computed as freq / (freq + k1 * (1 - b + b * dl / avgdl)) from:
+        1.0 = freq, occurrences of term within document
+        0.7 = k1, term saturation parameter
+        0.4 = b, length normalization parameter
+        136.0 = dl, length of field (approximate)
+        147.38548 = avgdl, average length of field
+  0.5198913 = weight(categories:shoes in 6877) [SchemaSimilarity], result of:
+    0.5198913 = score(DFISimilarity, freq=3.0), computed as boost * log2(measure + 1) from:
+      1.0 = boost, query boost
+      0.43384722 = measure, computed as independence.score(freq, expected) from:
+        3.0 = freq, occurrences of term within document
+        2.3367958 = expected, computed as (F + 1) * dl / (T + 1) from:
+          115319 = F, total number of occurrences of term across all docs
+          8.0 = dl, length of field
+          394796 = T, total number of tokens in the field
+  2.835204 = weight(reviews:comfortable in 6877) [SchemaSimilarity], result of:
+    2.835204 = score(DFISimilarity, freq=1.0), computed as boost * log2(measure + 1) from:
+      1.0 = boost, query boost
+      6.136437 = measure, computed as independence.score(freq, expected) from:
+        1.0 = freq, occurrences of term within document
+        0.025233012 = expected, computed as (F + 1) * dl / (T + 1) from:
+          5413 = F, total number of occurrences of term across all docs
+          5.0 = dl, length of field
+          1072800 = T, total number of tokens in the field
+",

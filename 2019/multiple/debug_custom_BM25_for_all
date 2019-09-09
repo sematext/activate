@@ -1,0 +1,36 @@
+      "bb8e335d-79f5-446f-8c85-ba61548ea7d3":"
+2.4076152 = sum of:
+  1.5905907 = weight(descriptions:durable in 6877) [SchemaSimilarity], result of:
+    1.5905907 = score(freq=1.0), product of:
+      2.6696 = idf, computed as log(1 + (N - n + 0.5) / (n + 0.5)) from:
+        2655 = n, number of documents containing term
+        38329 = N, total number of documents with field
+      0.59581614 = tf, computed as freq / (freq + k1 * (1 - b + b * dl / avgdl)) from:
+        1.0 = freq, occurrences of term within document
+        0.7 = k1, term saturation parameter
+        0.4 = b, length normalization parameter
+        136.0 = dl, length of field (approximate)
+        147.38548 = avgdl, average length of field
+  7.5774124E-6 = weight(categories:shoes in 6877) [SchemaSimilarity], result of:
+    7.5774124E-6 = score(freq=3.0), product of:
+      9.4004845E-6 = idf, computed as log(1 + (N - n + 0.5) / (n + 0.5)) from:
+        53188 = n, number of documents containing term
+        53188 = N, total number of documents with field
+      0.80606616 = tf, computed as freq / (freq + k1 * (1 - b + b * dl / avgdl)) from:
+        3.0 = freq, occurrences of term within document
+        0.7 = k1, term saturation parameter
+        0.4 = b, length normalization parameter
+        8.0 = dl, length of field
+        7.422652 = avgdl, average length of field
+  0.8170169 = weight(reviews:comfortable in 6877) [SchemaSimilarity], result of:
+    0.8170169 = score(freq=1.0), product of:
+      1.1663117 = idf, computed as log(1 + (N - n + 0.5) / (n + 0.5)) from:
+        1796 = n, number of documents containing term
+        5766 = N, total number of documents with field
+      0.7005133 = tf, computed as freq / (freq + k1 * (1 - b + b * dl / avgdl)) from:
+        1.0 = freq, occurrences of term within document
+        0.7 = k1, term saturation parameter
+        0.4 = b, length normalization parameter
+        5.0 = dl, length of field
+        186.0562 = avgdl, average length of field
+",

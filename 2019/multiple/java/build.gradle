@@ -1,0 +1,21 @@
+apply plugin: 'java'
+
+version = 1.0
+archivesBaseName = 'sematext-activate-custom'
+description = 'Activate 2019 Custom Similarity Demo'
+
+repositories {
+    jcenter()
+}
+
+jar {
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+dependencies {
+    compileOnly 'org.apache.solr:solr-core:8.2.0'
+
+    testCompile 'junit:junit:4.12'
+}

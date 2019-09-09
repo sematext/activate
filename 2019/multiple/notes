@@ -1,0 +1,14 @@
+/opt/solr-8.2.0/bin/solr zk upconfig -n shoes -d conf/ -z localhost:9983; curl 'localhost:8983/solr/admin/collections?action=RELOAD&name=shoes'
+
+
+http://localhost:8983/solr/shoes/select?fl=id,descriptions,categories,name,reviews,score&q=descriptions:durable categories:shoes reviews:comfortable&rows=100&group=true&group.field=original_id&debugQuery=true
+
+Results look OK, but reviews (DFI) weight too much. Almost double the score of a rarer field (2655, trust me, see below).
+
+http://localhost:8983/solr/shoes/select?q=*:*&facet=true&facet.field=descriptions&facet.prefix=durable
+
+Custom similarity to tame that score. Enable it, then:
+
+/opt/solr-8.2.0/bin/solr zk upconfig -n shoes -d conf/ -z localhost:9983; curl 'localhost:8983/solr/admin/collections?action=RELOAD&name=shoes'
+
+Retry the query. Note how the result is still high, but scores aren't that disproportionate.

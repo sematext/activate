@@ -106,7 +106,7 @@
         <str name="basicModel">G</str>
         <str name="afterEffect">L</str>
         <str name="normalization">H2</str>
-        <float name="c">7</float>
+        <float name="c">50</float>
       </similarity>
       <analyzer type="index">
         <tokenizer class="solr.StandardTokenizerFactory"/>

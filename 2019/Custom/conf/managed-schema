@@ -106,7 +106,7 @@
     </fieldType>
 
     <fieldType name="text_catrev" class="solr.TextField" positionIncrementGap="100" multiValued="true">
-      <similarity class="com.sematext.activate.SimpleSimilarityFactory">
+      <similarity class="com.sematext.activate.ActivateSimilarityFactory">
       </similarity>
       <analyzer type="index">
         <tokenizer class="solr.StandardTokenizerFactory"/>

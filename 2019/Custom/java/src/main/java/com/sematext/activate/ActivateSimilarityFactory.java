@@ -4,7 +4,7 @@ import org.apache.lucene.search.similarities.Similarity;
 import org.apache.solr.common.params.SolrParams;
 import org.apache.solr.schema.SimilarityFactory;
 
-public class SimpleSimilarityFactory extends SimilarityFactory {
+public class ActivateSimilarityFactory extends SimilarityFactory {
   private volatile Similarity similarity;
 
   public void init(SolrParams params) {
@@ -13,7 +13,7 @@ public class SimpleSimilarityFactory extends SimilarityFactory {
 
   public Similarity getSimilarity() {
     if (similarity == null) {
-      similarity = new SimpleSimilarity();
+      similarity = new ActivateSimilarity();
     }
     return similarity;
   }

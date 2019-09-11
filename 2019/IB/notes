@@ -4,7 +4,7 @@ http://localhost:8983/solr/shoes/select?q=categories:shoes AND categories:women 
 
 # search for 'comfortable women shoes' and IB with LL/DF and no normalization - close to no changes here, score is even more steeper than compared SPL distribution with DF lambda
 
-#  search for 'comfortable women shoes' and IB with LL/DF and H2 normalization - this is where things get interesting. Though the score is similar to the one calculated (max score difference is about 4 - 5%). The differences in documents that are returned:
+#  search for 'comfortable women shoes' and IB with LL/DF and H2 normalization - this is where things get interesting. The differences in documents that are returned:
  - top documents have short fields, few terms top, compared to long documents without normalization
  - the most relevant document is the shortest one
  - IB with appropriate normalization is a good use case for e-commerce when we search for short documents, think video or music search - title, artist, genre, etc

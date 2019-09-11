@@ -1,0 +1,10 @@
+# /opt/solr-8.2.0/bin/solr zk upconfig -n shoes -d default_conf/ -z localhost:9983; curl 'localhost:8983/solr/admin/collections?action=RELOAD&name=shoes'
+
+
+http://localhost:8983/solr/shoes/select?fl=descriptions,score&q=descriptions:wool AND descriptions:durable&rows=100
+
+
+vim bm25/conf/managed-schema
+
+
+/opt/solr-8.2.0/bin/solr zk upconfig -n shoes -d bm25/conf/ -z localhost:9983; curl 'localhost:8983/solr/admin/collections?action=RELOAD&name=shoes'

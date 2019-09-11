@@ -1,26 +1,7 @@
-# specific search
-
-http://localhost:8983/solr/shoes/select?q=women side zip high heel leather ankle boots&q.op=and&fl=*,score&rows=100&group=true&group.field=original_id
-
-#TODO: start directly here? because we usually do q.op=or? And I just say that whatever result has all the words?
-
-# 3 results. Note them. Usually we don't do q.op=and
-
-http://localhost:8983/solr/shoes/select?q=women side zip high heel leather ankle boots&q.op=or&fl=*,score&rows=100&group=true&group.field=original_id
-
-# problem: men's item is the 3rd result. Check debug: eh, women is a common word. And mens one has lots of mentions for the infrequent words (e.g. side, zip)
+http://localhost:8983/solr/shoes/select?q=women side zip high heel leather ankle boots&fl=id,name,score&rows=100&group=true&group.field=original_id
 
 # switch to LM Jelinek-Merker
 
 /opt/solr-8.2.0/bin/solr zk upconfig -n shoes -d conf/ -z localhost:9983; curl 'localhost:8983/solr/admin/collections?action=RELOAD&name=shoes'
 
-# now men's item is way lower (14). But our Diba and Reneeze are even lower :( Still, we have higher scores for more frequent terms, vs rare ones
-
-
-#TODO: directly 0.4? Because we know this works well? How did we get here? Well, we just tried different values, until we found a good balance. Why LM? Long queries...
-
-# switch to 0.4, to make scores higher in general (so weight of e.g. "women" increases) then:
-
-/opt/solr-8.2.0/bin/solr zk upconfig -n shoes -d conf/ -z localhost:9983; curl 'localhost:8983/solr/admin/collections?action=RELOAD&name=shoes'
-
-# rerun query: now Diba and Reneeze are 8 and 9, with Men 12. Seems like a good balance
+# rerun query

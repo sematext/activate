@@ -323,11 +323,15 @@
     </fieldType>
 
     <fieldType name="text_catrev" class="solr.TextField" positionIncrementGap="100" multiValued="true">
- <!--      <similarity class="solr.DFISimilarityFactory">
-        <str name="independenceMeasure">Standardized</str>
+<!--       <similarity class="solr.BM25SimilarityFactory">
+        <float name="k1">0.7</float>
+        <float name="b">0.4</float>
       </similarity> -->
-      <similarity class="com.sematext.activate.SimpleSimilarityFactory">
+      <similarity class="solr.DFISimilarityFactory">
+        <str name="independenceMeasure">Standardized</str>
       </similarity>
+<!--       <similarity class="com.sematext.activate.SimpleSimilarityFactory">
+      </similarity> -->
       <analyzer type="index">
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>

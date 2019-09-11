@@ -1,0 +1,25 @@
+      "2504693c-ed16-46e7-a700-959af00fbafc":"
+0.8775771 = sum of:
+  6.750792E-6 = weight(categories:shoes in 10130) [SchemaSimilarity], result of:
+    6.750792E-6 = score(freq=2.0), product of:
+      9.4004845E-6 = idf, computed as log(1 + (N - n + 0.5) / (n + 0.5)) from:
+        53188 = n, number of documents containing term
+        53188 = N, total number of documents with field
+      0.7181324 = tf, computed as freq / (freq + k1 * (1 - b + b * dl / avgdl)) from:
+        2.0 = freq, occurrences of term within document
+        1.2 = k1, term saturation parameter
+        0.75 = b, length normalization parameter
+        4.0 = dl, length of field
+        7.422652 = avgdl, average length of field
+  0.8775704 = weight(reviews:comfortable in 10130) [SchemaSimilarity], result of:
+    0.8775704 = score(freq=1.0), product of:
+      1.1663117 = idf, computed as log(1 + (N - n + 0.5) / (n + 0.5)) from:
+        1796 = n, number of documents containing term
+        5766 = N, total number of documents with field
+      0.7524321 = tf, computed as freq / (freq + k1 * (1 - b + b * dl / avgdl)) from:
+        1.0 = freq, occurrences of term within document
+        1.2 = k1, term saturation parameter
+        0.75 = b, length normalization parameter
+        6.0 = dl, length of field
+        186.0562 = avgdl, average length of field
+",

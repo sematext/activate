@@ -1,0 +1,25 @@
+      "ecb31e5b-2b5d-4ca1-896f-51a5ef2bfa2d":"
+0.94900125 = sum of:
+  3.5692324E-6 = weight(categories:shoes in 10695) [SchemaSimilarity], result of:
+    3.5692324E-6 = score(freq=1.0), product of:
+      9.4004845E-6 = idf, computed as log(1 + (N - n + 0.5) / (n + 0.5)) from:
+        53188 = n, number of documents containing term
+        53188 = N, total number of documents with field
+      0.379686 = tf, computed as freq / (freq + k1 * (1 - b + b * dl / avgdl)) from:
+        1.0 = freq, occurrences of term within document
+        1.2 = k1, term saturation parameter
+        0.75 = b, length normalization parameter
+        11.0 = dl, length of field
+        7.422652 = avgdl, average length of field
+  0.9489977 = weight(reviews:comfortable in 10695) [SchemaSimilarity], result of:
+    0.9489977 = score(freq=3.0), product of:
+      1.1663117 = idf, computed as log(1 + (N - n + 0.5) / (n + 0.5)) from:
+        1796 = n, number of documents containing term
+        5766 = N, total number of documents with field
+      0.8136741 = tf, computed as freq / (freq + k1 * (1 - b + b * dl / avgdl)) from:
+        3.0 = freq, occurrences of term within document
+        1.2 = k1, term saturation parameter
+        0.75 = b, length normalization parameter
+        80.0 = dl, length of field (approximate)
+        186.0562 = avgdl, average length of field
+",

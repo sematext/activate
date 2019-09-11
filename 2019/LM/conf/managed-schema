@@ -307,9 +307,6 @@
     </fieldType>
 
     <fieldType name="text_catrev" class="solr.TextField" positionIncrementGap="100" multiValued="true">
-<!--       <similarity class="solr.DFISimilarityFactory">
-        <str name="independenceMeasure">Standardized</str>
-      </similarity> -->
       <analyzer type="index">
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
@@ -323,7 +320,7 @@
 
     <fieldType name="text_catchall" class="solr.TextField" positionIncrementGap="100" multiValued="true">
       <similarity class="solr.LMJelinekMercerSimilarityFactory">
-        <float name="lambda">0.7</float>
+        <float name="lambda">0.4</float>
       </similarity>
       <analyzer type="index">
         <tokenizer class="solr.StandardTokenizerFactory"/>

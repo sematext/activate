@@ -1,0 +1,21 @@
+      "2504693c-ed16-46e7-a700-959af00fbafc":"
+3.5397162 = sum of:
+  0.823214 = weight(categories:shoes in 10130) [SchemaSimilarity], result of:
+    0.823214 = score(DFISimilarity, freq=2.0), computed as boost * log2(measure + 1) from:
+      1.0 = boost, query boost
+      0.76934326 = measure, computed as independence.score(freq, expected) from:
+        2.0 = freq, occurrences of term within document
+        1.1683979 = expected, computed as (F + 1) * dl / (T + 1) from:
+          115319 = F, total number of occurrences of term across all docs
+          4.0 = dl, length of field
+          394796 = T, total number of tokens in the field
+  2.7165022 = weight(reviews:comfortable in 10130) [SchemaSimilarity], result of:
+    2.7165022 = score(DFISimilarity, freq=1.0), computed as boost * log2(measure + 1) from:
+      1.0 = boost, query boost
+      5.572773 = measure, computed as independence.score(freq, expected) from:
+        1.0 = freq, occurrences of term within document
+        0.030279614 = expected, computed as (F + 1) * dl / (T + 1) from:
+          5413 = F, total number of occurrences of term across all docs
+          6.0 = dl, length of field
+          1072800 = T, total number of tokens in the field
+",

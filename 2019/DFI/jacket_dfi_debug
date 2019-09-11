@@ -1,0 +1,14 @@
+      "ecb31e5b-2b5d-4ca1-896f-51a5ef2bfa2d":"
+2.346551 = sum of:
+  0.0 = weight(categories:shoes in 10695) [SchemaSimilarity], result of:
+    0.0 = score(DFISimilarity, freq=1.0), equals to 0
+  2.346551 = weight(reviews:comfortable in 10695) [SchemaSimilarity], result of:
+    2.346551 = score(DFISimilarity, freq=3.0), computed as boost * log2(measure + 1) from:
+      1.0 = boost, query boost
+      4.086068 = measure, computed as independence.score(freq, expected) from:
+        3.0 = freq, occurrences of term within document
+        0.4037282 = expected, computed as (F + 1) * dl / (T + 1) from:
+          5413 = F, total number of occurrences of term across all docs
+          80.0 = dl, length of field
+          1072800 = T, total number of tokens in the field
+",

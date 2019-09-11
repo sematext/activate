@@ -1,8 +1,12 @@
 # slides to explain how BM25 works in general :)
 
+# default config:
+
+/opt/solr-8.2.0/bin/solr zk upconfig -n shoes -d default_conf/ -z localhost:9983; curl 'localhost:8983/solr/admin/collections?action=RELOAD&name=shoes'
+
 # search for "wool AND durable" in the descriptions field
 
-http://localhost:8983/solr/shoes/select?fl=descriptions,score&q=descriptions:wool%20AND%20descriptions:durable&rows=100
+http://localhost:8983/solr/shoes/select?fl=descriptions,score&q=descriptions:wool AND descriptions:durable&rows=100
 
 # note how spread of score is large (e.g. from 5 to 2.5) which is because we penalize quite heavily by length. This is OK for other fields (e.g. product name - to avoid the "accessories" problem), but not necessarily here. First product isn't twice about wool or durable than the last
 
@@ -10,9 +14,11 @@ http://localhost:8983/solr/shoes/select?fl=descriptions,score&q=descriptions:woo
 
 # show how managed-schema looks like, with text_descriptions. And how we can define a similarity per-field
 
+vim bm25/conf/managed-schema
+
 # try with b=0.4 (from 0.75, can be [0..1]) and k1=1 (from 1.2, can be any >=0)
 
-/opt/solr-8.2.0/bin/solr zk upconfig -n shoes -d conf/ -z localhost:9983; curl 'localhost:8983/solr/admin/collections?action=RELOAD&name=shoes'
+/opt/solr-8.2.0/bin/solr zk upconfig -n shoes -d bm25/conf/ -z localhost:9983; curl 'localhost:8983/solr/admin/collections?action=RELOAD&name=shoes'
 
 # rerun the query
 

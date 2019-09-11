@@ -111,8 +111,11 @@
     -->
 
     <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" />
-
+    <field name="original_id" type="string" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="descriptions" type="text_descriptions" indexed="true" stored="true" required="false" multiValued="false" />
     <field name="manufacturerNumber" type="text_general" indexed="true" stored="true" required="false" multiValued="false" />
+    <field name="categories" type="text_general" indexed="true" stored="true" required="false" multiValued="false" />
+    <field name="reviews" type="text_general" indexed="true" stored="true" required="false" multiValued="false" />
     <field name="prices.flavor" type="text_general" indexed="true" stored="true" required="false" multiValued="false" />
     <field name="Model_Number" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
     <field name="Shoe_Size" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
@@ -292,6 +295,17 @@
 	       also applies synonyms.
 	  -->
     <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100" multiValued="true">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <fieldType name="text_descriptions" class="solr.TextField" positionIncrementGap="100" multiValued="true">
       <analyzer type="index">
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
